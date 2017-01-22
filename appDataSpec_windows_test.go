@@ -23,7 +23,7 @@ var _ = Describe("appdata", func() {
 					}
 				}
 
-				objectUnderTest := New(fakeVos)
+				objectUnderTest := NewWithVos(fakeVos)
 
 				/* act */
 				result := objectUnderTest.GlobalPath()
@@ -37,7 +37,7 @@ var _ = Describe("appdata", func() {
 				/* arrange */
 				expectedPanic := "Unable to determine per user app data path. Error was: PROGRAMDATA env var required"
 
-				objectUnderTest := New(new(vos.FakeVos))
+				objectUnderTest := NewWithVos(new(vos.FakeVos))
 
 				/* act */
 				var actualPanic interface{}
@@ -67,7 +67,7 @@ var _ = Describe("appdata", func() {
 					}
 				}
 
-				objectUnderTest := New(fakeVos)
+				objectUnderTest := NewWithVos(fakeVos)
 
 				/* act */
 				result := objectUnderTest.PerUserPath()
@@ -81,7 +81,7 @@ var _ = Describe("appdata", func() {
 				/* arrange */
 				expectedPanic := "Unable to determine per user app data path. Error was: LOCALAPPDATA env var required"
 
-				objectUnderTest := New(new(vos.FakeVos))
+				objectUnderTest := NewWithVos(new(vos.FakeVos))
 
 				/* act */
 				var actualPanic interface{}

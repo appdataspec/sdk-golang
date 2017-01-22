@@ -10,7 +10,13 @@ var _ = Describe("appdata", func() {
 	Context("New", func() {
 		It("should return AppData", func() {
 			/* arrange/act/assert */
-			Expect(New(new(vos.FakeVos))).Should(Not(BeNil()))
+			Expect(New()).Should(Not(BeNil()))
+		})
+	})
+	Context("_new", func() {
+		It("should return AppData", func() {
+			/* arrange/act/assert */
+			Expect(new(vos.FakeVos)).Should(Not(BeNil()))
 		})
 	})
 })

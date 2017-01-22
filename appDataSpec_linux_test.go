@@ -12,7 +12,7 @@ var _ = Describe("appdata", func() {
 			/* arrange */
 			expected := "/var/lib"
 
-			objectUnderTest := New(new(vos.FakeVos))
+			objectUnderTest := New()
 
 			/* act */
 			result := objectUnderTest.GlobalPath()
@@ -37,7 +37,7 @@ var _ = Describe("appdata", func() {
 					}
 				}
 
-				objectUnderTest := New(fakeVos)
+				objectUnderTest := NewWithVos(fakeVos)
 
 				/* act */
 				result := objectUnderTest.PerUserPath()
@@ -51,7 +51,7 @@ var _ = Describe("appdata", func() {
 				/* arrange */
 				expectedPanic := "Unable to determine per user app data path. Error was: HOME env var required"
 
-				objectUnderTest := New(new(vos.FakeVos))
+				objectUnderTest := NewWithVos(new(vos.FakeVos))
 
 				/* act */
 				var actualPanic interface{}

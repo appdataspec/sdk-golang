@@ -10,7 +10,20 @@ SDK for the [app data spec](https://github.com/appdataspec/spec)
 # Usage
 
 ```go
+package myDummyPackage
 
+import "github.com/appdataspec/sdk-golang"
+
+func main() {
+
+appDataSpec := appdataspec.New()
+
+// get global app data path
+appDataSpec.GlobalPath()
+
+// get per user app data path
+appDataSpec.PerUserPath()
+}
 ```
 
 # Releases
