@@ -1,0 +1,4 @@
+description: publishes code coverage
+name: publish-coverage
+inputs:
+- { name: GIT_BRANCH, default: master, description: 'The git branch the coverage should be associated with' }

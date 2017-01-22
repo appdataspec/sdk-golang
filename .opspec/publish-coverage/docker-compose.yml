@@ -1,0 +1,15 @@
+version: "2"
+services:
+  publish-coverage:
+    extends:
+      service: go
+      file: ../.common/docker-compose.yml
+    environment:
+      - CODECOV_TOKEN=95ed1684-f699-43e4-ac9a-5ca3af475f61
+      - GIT_BRANCH
+    entrypoint:
+      - sh
+      - -ce
+      - |
+        curl -s https://codecov.io/bash | bash -s
+    network_mode: host

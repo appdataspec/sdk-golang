@@ -1,0 +1,10 @@
+description: runs all tests
+name: test
+run:
+  serial:
+  - op: clean
+  - op: fmt-code
+  - parallel:
+    - op: test-lint
+    - op: test-unit
+  - op: test-coverage

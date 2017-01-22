@@ -1,0 +1,8 @@
+version: "2"
+services:
+  gen-fakes:
+    extends:
+      service: go
+      file: ../.common/docker-compose.yml
+    entrypoint: govendor generate appDataSpec.go # +local
+    network_mode: none
