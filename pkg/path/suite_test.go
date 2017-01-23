@@ -1,4 +1,4 @@
-package appdataspec
+package path
 
 import (
 	. "github.com/onsi/ginkgo"
@@ -9,5 +9,5 @@ import (
 
 func TestCli(t *testing.T) {
 	RegisterFailHandler(Fail)
-	RunSpecs(t, "appdataspec")
+	RunSpecs(t, "sdk-golang/pkg/path")
 }

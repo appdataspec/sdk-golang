@@ -1,31 +1,31 @@
-package appdataspec
+package path
 
 import (
 	vosPkg "github.com/appdataspec/sdk-golang/util/vos"
 )
 
-//go:generate counterfeiter -o ./fakeAppDataSpec.go --fake-name FakeAppDataSpec ./ AppDataSpec
+//go:generate counterfeiter -o ./fakePath.go --fake-name FakePath ./ Path
 
-type AppDataSpec interface {
+type Path interface {
 	// returns the per user app data path; panics if required env vars missing
-	GlobalPath() string
+	Global() string
 	// returns the per user app data path; panics if required env vars missing
-	PerUserPath() string
+	PerUser() string
 }
 
-func New() AppDataSpec {
+func New() Path {
 	return NewWithVos(vosPkg.New())
 }
 
 // allows passing in virtual operating system to decouple from running OS (useful for testing)
 func NewWithVos(
 	vos vosPkg.Vos,
-) AppDataSpec {
-	return appDataSpec{
+) Path {
+	return path{
 		vos: vos,
 	}
 }
 
-type appDataSpec struct {
+type path struct {
 	vos vosPkg.Vos
 }
