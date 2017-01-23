@@ -7,22 +7,26 @@ Golang SDK for the [app data spec](https://github.com/appdataspec/spec)
 > development. Anything may change at any time. The public API should
 > not be considered stable."*
 
+# Packages
+
+[/pkg](pkg) contains all packages distributed by this SDK.
+
 # Usage
 
 ```go
 package myDummyPackage
 
-import "github.com/appdataspec/sdk-golang"
+import (
+"github.com/appdataspec/sdk-golang/pkg/path"
+"fmt"
+)
 
 func main() {
+// use path package for working w/ ADS (app data spec) paths
+adsPath := path.New()
 
-appDataSpec := appdataspec.New()
-
-// get global app data path
-appDataSpec.GlobalPath()
-
-// get per user app data path
-appDataSpec.PerUserPath()
+fmt.Printf("Global ADS path is: %v\n", adsPath.Global())
+fmt.Printf("Per user ADS path is: %v\n", adsPath.PerUser())
 }
 ```
 

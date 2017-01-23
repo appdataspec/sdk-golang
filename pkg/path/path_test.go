@@ -1,4 +1,4 @@
-package appdataspec
+package path
 
 import (
 	"github.com/appdataspec/sdk-golang/util/vos"

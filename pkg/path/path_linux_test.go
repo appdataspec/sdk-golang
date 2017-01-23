@@ -1,4 +1,4 @@
-package appdataspec
+package path
 
 import (
 	"github.com/appdataspec/sdk-golang/util/vos"
@@ -7,43 +7,43 @@ import (
 )
 
 var _ = Describe("appdata", func() {
-	Context("GlobalPath", func() {
+	Context("Global", func() {
 		It("should return expected path", func() {
 			/* arrange */
-			expected := "/Library/Application Support"
+			expected := "/var/lib"
 
 			objectUnderTest := New()
 
 			/* act */
-			result := objectUnderTest.GlobalPath()
+			result := objectUnderTest.Global()
 
 			/* assert */
 			Expect(result).To(Equal(expected))
 		})
 	})
-	Context("PerUserPath", func() {
+	Context("PerUser", func() {
 		Context("HOME env var exists", func() {
 			It("should return expected path", func() {
 				/* arrange */
-				expectedPerUserPath := "dummyHomeDirPath"
+				expectedPerUser := "dummyHomeDirPath"
 
 				fakeVos := new(vos.FakeVos)
 				fakeVos.GetenvStub = func(key string) string {
 					switch key {
 					case `HOME`:
-						return expectedPerUserPath
+						return expectedPerUser
 					default:
 						return ""
 					}
 				}
 
-				objectUnderTest := NewWithVos(new(vos.FakeVos))
+				objectUnderTest := NewWithVos(fakeVos)
 
 				/* act */
-				result := objectUnderTest.PerUserPath()
+				result := objectUnderTest.PerUser()
 
 				/* assert */
-				Expect(result).To(Equal(expectedPerUserPath))
+				Expect(result).To(Equal(expectedPerUser))
 			})
 		})
 		Context("HOME env var doesn't exist", func() {
@@ -58,7 +58,7 @@ var _ = Describe("appdata", func() {
 				defer func() {
 					actualPanic = recover()
 				}()
-				_ = objectUnderTest.PerUserPath()
+				_ = objectUnderTest.PerUser()
 
 				/* assert */
 				Expect(actualPanic).To(Equal(expectedPanic))

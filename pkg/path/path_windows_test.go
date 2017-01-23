@@ -1,4 +1,4 @@
-package appdataspec
+package path
 
 import (
 	"github.com/appdataspec/sdk-golang/util/vos"
@@ -7,17 +7,17 @@ import (
 )
 
 var _ = Describe("appdata", func() {
-	Context("GlobalPath", func() {
+	Context("Global", func() {
 		Context("PROGRAMDATA env var exists", func() {
 			It("should return expected path", func() {
 				/* arrange */
-				expectedGlobalPath := "dummyGlobalPath"
+				expectedGlobal := "dummyGlobal"
 
 				fakeVos := new(vos.FakeVos)
 				fakeVos.GetenvStub = func(key string) string {
 					switch key {
 					case `PROGRAMDATA`:
-						return expectedGlobalPath
+						return expectedGlobal
 					default:
 						return ""
 					}
@@ -26,10 +26,10 @@ var _ = Describe("appdata", func() {
 				objectUnderTest := NewWithVos(fakeVos)
 
 				/* act */
-				result := objectUnderTest.GlobalPath()
+				result := objectUnderTest.Global()
 
 				/* assert */
-				Expect(result).To(Equal(expectedGlobalPath))
+				Expect(result).To(Equal(expectedGlobal))
 			})
 		})
 		Context("PROGRAMDATA env var doesn't exist", func() {
@@ -44,24 +44,24 @@ var _ = Describe("appdata", func() {
 				defer func() {
 					actualPanic = recover()
 				}()
-				_ = objectUnderTest.GlobalPath()
+				_ = objectUnderTest.Global()
 
 				/* assert */
 				Expect(actualPanic).To(Equal(expectedPanic))
 			})
 		})
 	})
-	Context("PerUserPath", func() {
+	Context("PerUser", func() {
 		Context("LOCALAPPDATA env var exists", func() {
 			It("should return expected path", func() {
 				/* arrange */
-				expectedPerUserPath := "dummyHomeDirPath"
+				expectedPerUser := "dummyHomeDirPath"
 
 				fakeVos := new(vos.FakeVos)
 				fakeVos.GetenvStub = func(key string) string {
 					switch key {
 					case `LOCALAPPDATA`:
-						return expectedPerUserPath
+						return expectedPerUser
 					default:
 						return ""
 					}
@@ -70,10 +70,10 @@ var _ = Describe("appdata", func() {
 				objectUnderTest := NewWithVos(fakeVos)
 
 				/* act */
-				result := objectUnderTest.PerUserPath()
+				result := objectUnderTest.PerUser()
 
 				/* assert */
-				Expect(result).To(Equal(expectedPerUserPath))
+				Expect(result).To(Equal(expectedPerUser))
 			})
 		})
 		Context("LOCALAPPDATA env var doesn't exist", func() {
@@ -88,7 +88,7 @@ var _ = Describe("appdata", func() {
 				defer func() {
 					actualPanic = recover()
 				}()
-				_ = objectUnderTest.PerUserPath()
+				_ = objectUnderTest.PerUser()
 
 				/* assert */
 				Expect(actualPanic).To(Equal(expectedPanic))
