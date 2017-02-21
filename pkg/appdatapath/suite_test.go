@@ -1,4 +1,4 @@
-package path
+package appdatapath
 
 import (
 	. "github.com/onsi/ginkgo"

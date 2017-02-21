@@ -1,4 +1,4 @@
-package path
+package appdatapath
 
 import (
 	"github.com/appdataspec/sdk-golang/util/vos"
@@ -13,8 +13,8 @@ var _ = Describe("appdata", func() {
 				/* arrange */
 				expectedGlobal := "dummyGlobal"
 
-				fakeVos := new(vos.FakeVos)
-				fakeVos.GetenvStub = func(key string) string {
+				fakeOs := new(vos.FakeVos)
+				fakeOs.GetenvStub = func(key string) string {
 					switch key {
 					case `PROGRAMDATA`:
 						return expectedGlobal
@@ -23,7 +23,7 @@ var _ = Describe("appdata", func() {
 					}
 				}
 
-				objectUnderTest := NewWithVos(fakeVos)
+				objectUnderTest := NewWithVos(fakeOs)
 
 				/* act */
 				result := objectUnderTest.Global()
@@ -57,8 +57,8 @@ var _ = Describe("appdata", func() {
 				/* arrange */
 				expectedPerUser := "dummyHomeDirPath"
 
-				fakeVos := new(vos.FakeVos)
-				fakeVos.GetenvStub = func(key string) string {
+				fakeOs := new(vos.FakeVos)
+				fakeOs.GetenvStub = func(key string) string {
 					switch key {
 					case `LOCALAPPDATA`:
 						return expectedPerUser
@@ -67,7 +67,7 @@ var _ = Describe("appdata", func() {
 					}
 				}
 
-				objectUnderTest := NewWithVos(fakeVos)
+				objectUnderTest := NewWithVos(fakeOs)
 
 				/* act */
 				result := objectUnderTest.PerUser()

@@ -1,4 +1,4 @@
-package path
+package appdatapath
 
 import (
 	"github.com/appdataspec/sdk-golang/util/vos"
@@ -27,8 +27,8 @@ var _ = Describe("appdata", func() {
 				/* arrange */
 				expectedPerUser := "dummyHomeDirPath"
 
-				fakeVos := new(vos.FakeVos)
-				fakeVos.GetenvStub = func(key string) string {
+				fakeOs := new(vos.FakeVos)
+				fakeOs.GetenvStub = func(key string) string {
 					switch key {
 					case `HOME`:
 						return expectedPerUser
