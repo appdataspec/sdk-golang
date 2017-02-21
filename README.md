@@ -17,25 +17,25 @@ Golang SDK for the [app data spec](https://github.com/appdataspec/spec)
 package myDummyPackage
 
 import (
-"github.com/appdataspec/sdk-golang/pkg/path"
+"github.com/appdataspec/sdk-golang/pkg/appdatapath"
 "fmt"
 )
 
 func main() {
-// use path package for working w/ ADS (app data spec) paths
-adsPath := path.New()
+// use path package for working w/ spec compliant app data paths
+appDataPath := appdatapath.New()
 
-fmt.Printf("Global ADS path is: %v\n", adsPath.Global())
-fmt.Printf("Per user ADS path is: %v\n", adsPath.PerUser())
+fmt.Printf("Global path is: %v\n", appDataPath.Global())
+fmt.Printf("Per user path is: %v\n", appDataPath.PerUser())
 }
 ```
 
 # Releases
 
 All releases will be
-[tagged](https://github.com/opspec-io/sdk-golang/tags) and made
+[tagged](https://github.com/appdataspec/sdk-golang/tags) and made
 available on the
-[releases](https://github.com/opspec-io/sdk-golang/releases) page with
+[releases](https://github.com/appdataspec/sdk-golang/releases) page with
 links to docs.
 
 # Versioning
