@@ -1,8 +1,25 @@
 description: runs a build
 name: build
 inputs:
-- { name: GIT_BRANCH, default: master, description: 'The git branch the coverage should be associated with' }
+  gitBranch:
+    string:
+      constraints: { minLength: 1 }
+      description: git branch coverage should be associated with
+      default: master
+  srcDir:
+    dir:
+      default: .
+      description: directory containing the projects source code
+outputs:
+  srcDir:
+    dir:
+      description: directory containing the projects source code
 run:
   serial:
-  - op: test
-  - op: publish-coverage
+    - op:
+        pkg: { ref: test }
+        inputs: { srcDir }
+        outputs: { srcDir }
+    - op:
+        pkg: { ref: publish-coverage }
+        inputs: { gitBranch, srcDir }
