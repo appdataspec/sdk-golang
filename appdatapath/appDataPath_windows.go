@@ -2,6 +2,7 @@ package appdatapath
 
 import (
 	"fmt"
+  "errors"
 )
 
 const (
