@@ -7,17 +7,13 @@ Golang SDK for the [app data spec](https://github.com/appdataspec/spec)
 > development. Anything may change at any time. The public API should
 > not be considered stable."*
 
-# Packages
-
-[/pkg](pkg) contains all packages distributed by this SDK.
-
 # Usage
 
 ```go
 package myDummyPackage
 
 import (
-"github.com/appdataspec/sdk-golang/pkg/appdatapath"
+"github.com/appdataspec/sdk-golang/appdatapath"
 "fmt"
 )
 
