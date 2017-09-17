@@ -2,7 +2,7 @@ package appdatapath
 
 import (
 	"errors"
-	"github.com/golang-interfaces/vos"
+	"github.com/golang-interfaces/ios"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
 )
@@ -14,7 +14,7 @@ var _ = Describe("appdata", func() {
 				/* arrange */
 				expectedGlobal := "dummyGlobal"
 
-				fakeOS := new(vos.Fake)
+				fakeOS := new(ios.Fake)
 				fakeOS.GetenvStub = func(key string) string {
 					switch key {
 					case `PROGRAMDATA`:
@@ -38,10 +38,10 @@ var _ = Describe("appdata", func() {
 		Context("PROGRAMDATA env var doesn't exist", func() {
 			It("should panic w/ expected message", func() {
 				/* arrange */
-				expectedError := errors.New("Unable to determine per user app data path. Error was: PROGRAMDATA env var required")
+				expectedError := errors.New("unable to determine per user app data path. Error was: PROGRAMDATA env var required")
 
 				objectUnderTest := appDataPath{
-					os: new(vos.Fake),
+					os: new(ios.Fake),
 				}
 
 				/* act */
@@ -58,7 +58,7 @@ var _ = Describe("appdata", func() {
 				/* arrange */
 				expectedPerUser := "dummyHomeDirPath"
 
-				fakeOS := new(vos.Fake)
+				fakeOS := new(ios.Fake)
 				fakeOS.GetenvStub = func(key string) string {
 					switch key {
 					case `LOCALAPPDATA`:
@@ -82,10 +82,10 @@ var _ = Describe("appdata", func() {
 		Context("LOCALAPPDATA env var doesn't exist", func() {
 			It("should panic w/ expected message", func() {
 				/* arrange */
-				expectedError := errors.New("Unable to determine per user app data path. Error was: LOCALAPPDATA env var required")
+				expectedError := errors.New("unable to determine per user app data path. Error was: LOCALAPPDATA env var required")
 
 				objectUnderTest := appDataPath{
-					os: new(vos.Fake),
+					os: new(ios.Fake),
 				}
 
 				/* act */
